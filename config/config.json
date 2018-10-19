@@ -1,0 +1,13 @@
+{
+   "db": {
+        "host": "localhost",
+        "db_name": "api_db",
+        "username": "root",
+        "password": ""
+   },
+   "woo":{
+        "host":"http://localhost/testpage/",
+        "client-key":"ck_46d5cf71d941a86b93fd7dafb6978c510eb6838a",
+        "client-secret":"cs_a8ea051af4689460cc30abf7f4f7b3a21cf33cb2" 
+    }
+}

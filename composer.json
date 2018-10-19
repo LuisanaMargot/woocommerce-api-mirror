@@ -1,0 +1,14 @@
+{
+    "name": "luisanamargoth/apitest",
+    "description": "API Prueba woocommerce",
+    "license": "MTI",
+    "authors": [
+        {
+            "name": "luisana",
+            "email": "luisana.jalisoft@gmail.com"
+        }
+    ],
+    "require": {
+        "automattic/woocommerce": "^2.0"
+    }
+}
