@@ -42,14 +42,12 @@ class Product{
             $this->name=htmlspecialchars(strip_tags($this->name));
             $this->price=htmlspecialchars(strip_tags($this->price));
             $this->description=htmlspecialchars(strip_tags($this->description));
-            $this->category_id=htmlspecialchars(strip_tags($this->category_id));
             $this->created=htmlspecialchars(strip_tags($this->created));
             $this->id_woocommerce=htmlspecialchars(strip_tags($this->id_woocommerce));
 
             $stmt->bindParam(":name", $this->name);
             $stmt->bindParam(":price", $this->price);
             $stmt->bindParam(":description", $this->description);
-            $stmt->bindParam(":category_id", $this->category_id);
             $stmt->bindParam(":created", $this->created);
             $stmt->bindParam(":id_woocommerce", $this->id_woocommerce);
 
