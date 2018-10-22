@@ -35,27 +35,49 @@ class Product{
 
        function create(){
 
-            $query = "INSERT INTO ".$this->table_name ." SET name=:name, price=:price, description=:description, category_id=:category_id, created=:created , id_woocommerce=:id_woocommerce"; 
+        $result = true;
+
+            try{
+                $query = "INSERT INTO ".$this->table_name ." SET name=:name, price=:price, description=:description, id_woocommerce=:id_woocommerce"; 
          
-            $stmt = $this->conn->prepare($query);    
-            
-            $this->name=htmlspecialchars(strip_tags($this->name));
-            $this->price=htmlspecialchars(strip_tags($this->price));
-            $this->description=htmlspecialchars(strip_tags($this->description));
-            $this->created=htmlspecialchars(strip_tags($this->created));
-            $this->id_woocommerce=htmlspecialchars(strip_tags($this->id_woocommerce));
+                $stmt = $this->conn->prepare($query);    
+                
+                $this->name=htmlspecialchars(strip_tags($this->name));
+                $this->price=htmlspecialchars(strip_tags($this->price));
+                $this->description=htmlspecialchars(strip_tags($this->description));
+                $this->id_woocommerce=htmlspecialchars(strip_tags($this->id_woocommerce));
+    
+                $stmt->bindParam(":name", $this->name);
+                $stmt->bindParam(":price", $this->price);
+                $stmt->bindParam(":description", $this->description);
+                $stmt->bindParam(":id_woocommerce", $this->id_woocommerce);
+                $stmt->execute();
+                $this->id = $this->conn->lastInsertId();
+            }
 
-            $stmt->bindParam(":name", $this->name);
-            $stmt->bindParam(":price", $this->price);
-            $stmt->bindParam(":description", $this->description);
-            $stmt->bindParam(":created", $this->created);
-            $stmt->bindParam(":id_woocommerce", $this->id_woocommerce);
+            catch (Exception $e){
+                $result = false;
 
+            }
            
-        return $stmt->execute(); 
+        return $result;
        }
 
-      
+       function insertIDtoWoocommerceColumn(){
+
+            $query = "UPDATE " . $this->table_name . " SET id_woocommerce = :id_woocommerce  WHERE id = :id";
+            $stmt = $this->conn->prepare($query);
+     
+        
+            $this->id_woocommerce=htmlspecialchars(strip_tags($this->id_woocommerce));
+           
+    
+            $stmt->bindParam(':id_woocommerce', $this->id_woocommerce);
+            $stmt->bindParam(':id', $this->id);
+            $stmt->execute(); 
+         return  $stmt; 
+            
+       }
 
        function readOne(){
 
@@ -123,7 +145,7 @@ class Product{
        }
 
      
-    function delete(){
+       function delete(){
 
         $query = "DELETE FROM " . $this->table_name . "  p WHERE id = ?";
     

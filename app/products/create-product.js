@@ -47,15 +47,14 @@ $(document).ready(function() {
         var form_data=JSON.stringify($(this).serializeObject());
         $.ajax({
             url: "http://localhost/woocommerce-api-mirror/product/create.php",
-            type : "POST",
-            contentType : 'application/json',
+            method : "POST",
             data : form_data,
             success : function(result) { 
-                alert("success ::" +form_data);
+                console.log("success ::" +form_data);
                 showProducts();
             },
             error: function(xhr, resp, text) {
-                alert("error ::" +form_data);
+                console.log("error ::" +form_data);
                 console.log(xhr, resp, text);
             }
         });
