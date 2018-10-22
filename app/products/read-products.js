@@ -31,11 +31,7 @@ function showProducts() {
 
 
             read_products_html += "<td>";
-            read_products_html += "<button class='btn btn-primary m-r-10px read-one-product-button' data-id='" + val.id + "'>";
-            read_products_html += "<span class='glyphicon glyphicon-eye-open'></span> Read";
-            read_products_html += "</button>";
-
-
+          
             read_products_html += "<button class='btn btn-info m-r-10px update-product-button' data-id='" + val.id + "'>";
             read_products_html += "<span class='glyphicon glyphicon-edit'></span> Edit";
             read_products_html += "</button>";

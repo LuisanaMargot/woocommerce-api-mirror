@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $(document).on('click', '.create-product-button', function () {
         var create_product_html = "";
         create_product_html += "<div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>";
@@ -43,22 +43,22 @@ $(document).ready(function() {
         changePageTitle("Create Product");
     });
 
-    $(document).on('submit', '#create-product-form', function(){
-        var form_data=JSON.stringify($(this).serializeObject());
+    $(document).on('submit', '#create-product-form', function () {
+        var form_data = JSON.stringify($(this).serializeObject());
         $.ajax({
             url: "http://localhost/woocommerce-api-mirror/product/create.php",
-            method : "POST",
-            data : form_data,
-            success : function(result) { 
-                console.log("success ::" +form_data);
+            method: "POST",
+            data: form_data,
+            success: function (result) {
+                console.log("success ::" + form_data);
                 showProducts();
             },
-            error: function(xhr, resp, text) {
-                console.log("error ::" +form_data);
+            error: function (xhr, resp, text) {
+                console.log("error ::" + form_data);
                 console.log(xhr, resp, text);
             }
         });
-         
+
         return false;
     });
 });
